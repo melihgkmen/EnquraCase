@@ -7,22 +7,30 @@
 
 import UIKit
 import CoreData
+import RxSwift
+import Firebase
+import FirebaseCore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    var window: UIWindow?
+    private var appCoordinator : AppCoordinator!
+    private var disposeBag  = DisposeBag()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+         FirebaseApp.configure()
+         
+         self.window = UIWindow()
+         appCoordinator = AppCoordinator(window: self.window!)
+         appCoordinator.start().subscribe().disposed(by: disposeBag)
         return true
     }
 
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        // Called when a new scene session is being created.
-        // Use this method to select a configuration to create the new scene with.
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
 
