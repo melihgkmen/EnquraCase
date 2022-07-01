@@ -21,12 +21,7 @@ class HomePageCoordinator: ReactiveCoordinator<Void> {
         let vc  = HomePageVC()
         let vm = HomePageVM()
         vc.viewModel = vm
-        
-        vm.goToDetail.subscribe({_ in
-           let _ = self.coordinate(to: DetailPageCoordinator(rootViewController: self.rootViewController, navigationController: self.navigationController))
-        }).disposed(by: disposeBag)
 
-        
         navigationController.setNavigationBarHidden(true, animated: true)
         navigationController.setViewControllers([vc], animated: true)
         return Observable.never()

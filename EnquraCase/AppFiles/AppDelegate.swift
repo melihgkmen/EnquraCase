@@ -22,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
          FirebaseApp.configure()
          
+        Network.shared.startMonitoring()
+
          self.window = UIWindow()
          appCoordinator = AppCoordinator(window: self.window!)
          appCoordinator.start().subscribe().disposed(by: disposeBag)

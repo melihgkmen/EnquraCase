@@ -8,7 +8,55 @@
 import Foundation
 import Moya
 import UIKit
+import RxSwift
+import Alamofire
 
+class EnquraService: ServiceDelegate {
+
+    internal let networkManager: NetworkManagerDelegate
+
+    init(networkManager: NetworkManagerDelegate = NetworkManager()) {
+        self.networkManager = networkManager
+    }
+
+    func hr24(request: EnquraRequest = .init()) -> Single<[BankListResponse]> {
+        networkManager.sendRequest(request: request)
+    }
+}
+
+class EnquraRequest: Request {
+
+    override var path: String {
+        "/bankdata"
+    }
+}
+
+protocol RequestDelegate {
+    var base: String { get }
+    var path: String { get }
+    var endpoint: String { get }
+    var method: HTTPMethod { get }
+    var parameters: Parameters { get }
+    var headers: HTTPHeaders { get }
+    var testResponseFile: String { get set }
+}
+
+class Request: RequestDelegate {
+
+    var base: String = "https://raw.githubusercontent.com/fatiha380/mockjson/main"
+    var path: String { "" }
+    var endpoint: String {
+        base + path
+    }
+    var method: HTTPMethod { .get }
+    var parameters: Parameters { [:] }
+    var headers: HTTPHeaders { [:] }
+    var testResponseFile: String = ""
+}
+
+
+
+/*
 enum EnquraService {
     case getBankList
    
@@ -41,7 +89,6 @@ extension EnquraService : TargetType{
       
         }
     }
-    
     var task: Task{
         switch self {
         case .getBankList:
@@ -53,4 +100,4 @@ extension EnquraService : TargetType{
         return Data()
     }
 }
-
+*/

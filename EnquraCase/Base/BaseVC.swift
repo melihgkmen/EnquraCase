@@ -40,7 +40,7 @@ class BaseVC<T>: UIViewController,TopNavBarDelegate where T : BaseVM {
         }).disposed(by: disposeBag)
     }
     
-    func showMessage(withTitle _title: String? = "NERFIT!",
+    func showMessage(withTitle _title: String? = "Enqura!",
                      withMessage _message: String,
                      buttonTitle: String? = "Tamam",
                      callBack: (()->())? = nil) {

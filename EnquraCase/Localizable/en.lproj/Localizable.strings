@@ -5,3 +5,6 @@
   Created by Melih Gökmen on 28.06.2022.
   
 */
+
+invalidResponse = "Invalid response";
+responseCouldNotParse = "Response could not parse";

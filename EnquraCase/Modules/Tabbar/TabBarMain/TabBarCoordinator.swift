@@ -29,7 +29,7 @@ class TabBarCoordinator: ReactiveCoordinator<Void> {
         if #available(iOS 15.0, *) {
             let appearance = UITabBarAppearance()
             appearance.configureWithOpaqueBackground()
-            appearance.backgroundColor =  UIColor(named: "BackGround")
+            appearance.backgroundColor =  UIColor.systemGray5
             vc.tabBar.standardAppearance = appearance;
             vc.tabBar.scrollEdgeAppearance = vc.tabBar.standardAppearance
         } else {
